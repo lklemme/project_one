@@ -1,0 +1,30 @@
+{
+  "name": "Project One",
+  "version": "0.0.0",
+  "homepage": "https://github.com/codebrian/project_one",
+  "authors": [
+    "Brian Johnson <bjohnson@trulia.com>"
+  ],
+  "description": "Awesome new project",
+  "main": "client/index.html",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.16",
+    "bootstrap": "~3.1.1",
+    "angular-resource": "~1.2.16",
+    "angular-animate.css": "~1.0.1"
+  }
+}

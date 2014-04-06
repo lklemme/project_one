@@ -1,0 +1,22 @@
+{
+  "name": "project_one",
+  "version": "0.0.0",
+  "description": "project_one ===========",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codebrian/project_one.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/codebrian/project_one/issues"
+  },
+  "dependencies": {
+    "express": "~3.5.1",
+    "mongoose": "~3.8.8"
+  }
+}
