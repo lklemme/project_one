@@ -16,13 +16,40 @@ mongoose.connect('mongodb://localhost/project_one');
  */
 var app = express();
 /**
- * Create the server
- */
-var server = http.createServer(app);
-/**
  *
  */
-app.use('*', app.router);
+app.use(express.methodOverride());
+app.use(express.cookieParser('your secret here'));
+app.use(express.session());
+app.use(app.router);
+/**
+ * Stripe endpoint
+ */
+/**
+ * Get Stripe Library
+ */
+var Stripe = require('stripe');
+var stripe = Stripe("sk_test_VF8whfxJ7JdWNz4PCR2kdn0b");
+app.use(express.bodyParser());
+app.post('/stripe', function (req, res) {
+    'use strict';
+    console.log(req.is('json'));
+    var stripeToken = req.body.stripeToken;
+    var charge = stripe.charges.create({
+        amount: 1000, // amount in cents, again
+        currency: "usd",
+        card: stripeToken,
+        description: "payinguser@example.com"
+    }, function (err, charge) {
+        if (err && err.type === 'StripeCardError') {
+            // The card has been declined
+            console.log("Card declined");
+        }
+        //Charged the card
+        console.log(charge);
+    });
+});
+
 /**
  * Static resources
  */
@@ -37,7 +64,7 @@ app.use(express.static(coreAssets));
 /**
  * Start Server
  */
-server.listen(80, function () {
+app.listen(8080, function () {
     'use strict';
-    console.log('Listening on port ' + 80);
+    console.log('Listening on port ' + 8080);
 });

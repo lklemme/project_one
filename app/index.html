@@ -1,19 +1,42 @@
 <html>
 <head>
-  <title></title>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
-  <link rel="stylesheet" href="bower_components/angular-animate.css/angular-animate.css">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="bower_components/angular-animate.css/angular-animate.css">
 </head>
-<body>
+<body ng-app="client" ng-controller="MainCtrl">
 <div class="jumbotron">
-  <h1>Brian's Awesome Products</h1>
-  <h2>Welcome to Brian's Awesome Products</h2>
+    <h1>Brian's Awesome Products</h1>
+
+    <h2 ng-bind="mySillyText"></h2>
 </div>
-<div class=""></div>
+<div class="container">
+    <input ng-model="mySillyText" type="text" class="form-control">
+    <form stripe:form="saveCustomer">
+        <fieldset>
+            <label>Card Number</label>
+            <input class="form-control" type="text" size="20" data-stripe="number"/>
+            <label>CVC</label>
+            <input class="form-control" type="text" size="4" data-stripe="cvc"/>
+            <label>Expiration Month</label>
+            <input class="form-control" type="text" size="2" data-stripe="exp-month"/>
+            <label>Expiration Year</label>
+            <input class="form-control" type="text" size="4" data-stripe="exp-year"/>
+        </fieldset>
+        <div class="payment-errors"></div>
+        <button type="submit" class="btnGreen">Purchase</button>
+    </form>
+    <form id="payment-form" method="post" action="/stripe">
+
+    </form>
+    <img width="100%" src="assets/banana.jpg">
+</div>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular/angular-resource.js"></script>
+<script src="https://js.stripe.com/v2/"></script>
+<script src="js/directives/stripe.js"></script>
+<script src="js/client.js"></script>
 </body>
 </html>
